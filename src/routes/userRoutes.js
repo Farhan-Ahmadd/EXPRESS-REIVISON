@@ -3,6 +3,7 @@ import express from "express"
 import  {getAllUser , createUser , updateUser , deleteUser, getProfile} from "../controller/userController.js"
 import auth from "../middleware/auth.js"
 import { signupUser , loginUser  } from "../controller/userController.js"
+import upload from "../middleware/upload.js"
 const router = express.Router()
 
 //-----get all users-------///
@@ -20,5 +21,12 @@ router.post("/login" , loginUser)
 
 router.get("/profile" , auth , getProfile)
 
+router.post("/upload", upload.single("image"), (req,res)=>{
+    res.status(200).json({
+        success:true, 
+        message:"iamge successfully upload",
+        file:req.file,
+    })
+})
 
 export default router;
