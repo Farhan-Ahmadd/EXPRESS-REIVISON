@@ -106,7 +106,7 @@ export const signupUser = async (req, res)=>{
         }
         const newUser = new User({name , email , age})
         await newUser.save()
-        const token = jwt.sign({id: newUser_id} , process.env.JWT_SECRET ,{ expiresIn:"1d"})
+        const token = jwt.sign({id: newUser._id} , process.env.JWT_SECRET ,{ expiresIn:"1d"})
         res.status(201).json({
             success:true,
             message:"signup user" , token 
@@ -131,7 +131,7 @@ export const loginUser = async (req , res)=>{
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn:"1d"})
         res.status(200).json({
             success:true,
-            message:"user successfully login",token
+            message:"user successfully login",token,data:user
         })
 
     }catch(err){

@@ -21,12 +21,19 @@ router.post("/login" , loginUser)
 
 router.get("/profile" , auth , getProfile)
 
-router.post("/upload", upload.single("image"), (req,res)=>{
-    res.status(200).json({
-        success:true, 
-        message:"iamge successfully upload",
-        file:req.file,
-    })
-})
+// router.post("/upload", upload.single("image"), (req,res)=>{
+//     res.status(200).json({
+//         success:true, 
+//         message:"iamge successfully upload",
+//         file:req.file,
+//     })
+// })
 
+router.post("/upload" , upload.array("iamge", 5), (req , res)=>{
+  res.status(200).json({
+    success:true,
+    Message:"iamge upload successfully upload",
+    file:req.fileshan,
+  })
+})
 export default router;
