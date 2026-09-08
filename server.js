@@ -7,11 +7,11 @@ import check from "./src/middleware/check..js";
 import {checkname , checkemail} from "./src/middleware/checkname.js";
 import errorHandler from "./src/middleware/errorHandler.js";
 import cors from "cors";
-app.use(cors())
 const app = express();
 app.use(express.json())
 connectDB();
 dotenv.config()
+app.use(cors())
 // user routes
 app.use("/user", userRoutes)
 app.use(logger);
