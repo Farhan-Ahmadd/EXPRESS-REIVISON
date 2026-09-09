@@ -1,6 +1,6 @@
 import  User from "../models/userModel.js"
 import jwt from "jsonwebtoken"
-export const  getAllUser = async (req , res)=>{
+export const    getAllUser = async (req , res)=>{
 try{
     const getUser = await User.find()
     res.status(200).json({
@@ -142,20 +142,23 @@ export const loginUser = async (req , res)=>{
     }
 }
 ///------------getprofile------------///
-export  const getProfile = async (req , res)=>{
-    try{
-        const user = await User.findById(req.user.id)
-        if(!user){
-            return res.status(500).json(
-                { success:false , message:"user not found"}
-            )
-        }
+export const getAllProfiles = async (req, res) => {
+    try {
+
+        const profiles = await User.find();
+
         res.status(200).json({
-            success:true, message:"profile accessed", data:user
-        })
-    }catch(err){
-        res.status(400).json({
-            success:false, error:err.message
-        })
+            success: true,
+            message: "All profiles",
+            profiles: profiles
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+            success: false,
+            error: err.message
+        });
+
     }
-} 
+};

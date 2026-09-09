@@ -1,32 +1,88 @@
 import express from "express";
-import dotenv from "dotenv"
-import  userRoutes from "./src/routes/userRoutes.js"
-import  connectDB  from "./src/config/db.js";
+import dotenv from "dotenv";
+import cors from "cors";
+
+import userRoutes from "./src/routes/userRoutes.js";
+import connectDB from "./src/config/db.js";
+
 import logger from "./src/middleware/logger.js";
 import check from "./src/middleware/check..js";
-import {checkname , checkemail} from "./src/middleware/checkname.js";
-import errorHandler from "./src/middleware/errorHandler.js";
-import cors from "cors";
+import { checkname, checkemail } from "./src/middleware/checkname.js";
+import errorhandler from "./src/middleware/errorHandler.js";
+
+
+dotenv.config();
+
 const app = express();
-app.use(express.json())
+
+
+// ====================
+// Global Middleware
+// ====================
+
+app.use(express.json());
+
+app.use(cors({
+    // origin: "http://127.0.0.1:5500/test.html",
+    origin: "http://127.0.0.1:5500",
+}));
+
+
+// ====================
+// Database
+// ====================
+
 connectDB();
-dotenv.config()
-app.use(cors())
-// user routes
-app.use("/user", userRoutes)
-app.use(logger);
-app.use(check);
-app.use(checkname , checkemail);
+
+
+// ====================
+// Custom Middleware
+// ====================
+
+// app.use(logger);
+// app.use(check);
+// app.use(checkname, checkemail);
+
+
+// ====================
+// Routes
+// ====================
+
 app.use("/user", userRoutes);
-//404 error handle
-app.use((req , res)=>{
-  res.status(404).json({
-    success:false,
-    message:"Routes not found"
-  })
-})
-app.use(errorHandler);
-// start server
+
+
+// ====================
+// Home Route
+// ====================
+
+app.get("/", (req, res,next) => {
+    res.json({"message": "server is running"});
+}); 
+
+
+// ====================
+// 404 Error Handler
+// ====================
+
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        message: "route not found"
+    });
+});
+
+
+// ====================
+// Global Error Handler
+// ====================
+
+app.use(errorhandler);
+
+
+// ====================
+// Start Server
+// ====================
+
 app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+    console.log(`Server running on port ${process.env.PORT}`);
 });

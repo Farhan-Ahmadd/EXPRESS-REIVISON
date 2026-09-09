@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CORS TEST</title>
+</head>
+
+<body>
+
+    <h1>CORS Test</h1>
+
+    <button onclick="testAPI()">Test API</button>
+    <button onclick="getAllUsers()">Get All Users</button>
+    
+   <button onclick="getAllProfiles()">Get All Profiles</button>
+    <script>
+
+function testAPI() {
+
+    console.log("testAPI called");
+
+    fetch("http://localhost:3000/")
+
+        .then(res => {
+            console.log("Response:", res);
+            return res.text();
+        })
+
+        .then(data => {
+
+            console.log("Data:", data);
+
+            document.body.innerHTML +=
+                "<h2>" + data + "</h2>";
+
+        })
+
+        .catch(err => {
+
+            console.log("Error:", err);
+
+        });
+}
+
+
+function getAllUsers() {
+
+    fetch("http://localhost:3000/user/")
+
+        .then(res => {
+
+            console.log("Response:", res);
+
+            return res.json();
+
+        })
+
+        .then(data => {
+
+            console.log("Data:", data);
+
+            document.body.innerHTML +=
+                "<h2>Users:</h2><pre>" +
+                JSON.stringify(data, null, 2) +
+                "</pre>";
+
+        })
+
+        .catch(err => {
+
+            console.log("Error:", err);
+
+        });
+}
+
+
+function getAllProfiles() {
+
+    fetch("http://localhost:3000/user/profiles")
+
+        .then(res => {
+
+            console.log("Response:", res);
+
+            return res.json();
+
+        })
+
+        .then(data => {
+
+            console.log("Profiles:", data);
+
+            document.body.innerHTML +=
+                "<h2>All Profiles:</h2><pre>" +
+                JSON.stringify(data, null, 2) +
+                "</pre>";
+
+        })
+
+        .catch(err => {
+
+            console.log("Error:", err);
+
+        });
+}
+
+</script>
+
+</body>
+
+</html>

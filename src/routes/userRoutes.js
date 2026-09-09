@@ -1,6 +1,6 @@
 
 import express from "express"
-import  {getAllUser , createUser , updateUser , deleteUser, getProfile} from "../controller/userController.js"
+import  {getAllUser , createUser , updateUser , deleteUser, getAllProfiles} from "../controller/userController.js"
 import auth from "../middleware/auth.js"
 import { signupUser , loginUser  } from "../controller/userController.js"
 import upload from "../middleware/upload.js"
@@ -19,8 +19,7 @@ router.post("/signup" ,  signupUser)
 router.post("/login" , loginUser)
 ///------protected profile---------//
 
-router.get("/profile" , auth , getProfile)
-
+router.get("/profiles" , getAllProfiles)
 // router.post("/upload", upload.single("image"), (req,res)=>{
 //     res.status(200).json({
 //         success:true, 
