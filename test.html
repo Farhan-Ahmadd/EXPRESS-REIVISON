@@ -11,98 +11,125 @@
 
     <button onclick="testAPI()">Test API</button>
     <button onclick="getAllUsers()">Get All Users</button>
-    
+    <button onclick="testGET()">Test GET</button>
    <button onclick="getAllProfiles()">Get All Profiles</button>
     <script>
 
-function testAPI() {
+// function testAPI() {
 
-    console.log("testAPI called");
+//     console.log("testAPI called");
 
-    fetch("http://localhost:3000/")
+//     fetch("http://localhost:3000/")
 
-        .then(res => {
-            console.log("Response:", res);
-            return res.text();
-        })
+//         .then(res => {
+//             console.log("Response:", res);
+//             return res.text();
+//         })
 
-        .then(data => {
+//         .then(data => {
 
-            console.log("Data:", data);
+//             console.log("Data:", data);
 
-            document.body.innerHTML +=
-                "<h2>" + data + "</h2>";
+//             document.body.innerHTML +=
+//                 "<h2>" + data + "</h2>";
 
-        })
+//         })
 
-        .catch(err => {
+//         .catch(err => {
 
-            console.log("Error:", err);
+//             console.log("Error:", err);
 
-        });
-}
-
-
-function getAllUsers() {
-
-    fetch("http://localhost:3000/user/")
-
-        .then(res => {
-
-            console.log("Response:", res);
-
-            return res.json();
-
-        })
-
-        .then(data => {
-
-            console.log("Data:", data);
-
-            document.body.innerHTML +=
-                "<h2>Users:</h2><pre>" +
-                JSON.stringify(data, null, 2) +
-                "</pre>";
-
-        })
-
-        .catch(err => {
-
-            console.log("Error:", err);
-
-        });
-}
+//         });
+// }
 
 
-function getAllProfiles() {
+// function getAllUsers() {
 
-    fetch("http://localhost:3000/user/profiles")
+//     fetch("http://localhost:3000/user/")
 
-        .then(res => {
+//         .then(res => {
 
-            console.log("Response:", res);
+//             console.log("Response:", res);
 
-            return res.json();
+//             return res.json();
 
-        })
+//         })
 
-        .then(data => {
+//         .then(data => {
 
-            console.log("Profiles:", data);
+//             console.log("Data:", data);
 
-            document.body.innerHTML +=
-                "<h2>All Profiles:</h2><pre>" +
-                JSON.stringify(data, null, 2) +
-                "</pre>";
+//             document.body.innerHTML +=
+//                 "<h2>Users:</h2><pre>" +
+//                 JSON.stringify(data, null, 2) +
+//                 "</pre>";
 
-        })
+//         })
 
-        .catch(err => {
+//         .catch(err => {
 
-            console.log("Error:", err);
+//             console.log("Error:", err);
 
-        });
-}
+//         });
+// }
+
+
+// function getAllProfiles() {
+
+//     fetch("http://localhost:3000/user/profiles")
+
+//         .then(res => {
+
+//             console.log("Response:", res);
+
+//             return res.json();
+
+//         })
+
+//         .then(data => {
+
+//             console.log("Profiles:", data);
+
+//             document.body.innerHTML +=
+//                 "<h2>All Profiles:</h2><pre>" +
+//                 JSON.stringify(data, null, 2) +
+//                 "</pre>";
+
+//         })
+
+//         .catch(err => {
+
+//             console.log("Error:", err);
+
+//         });
+      function testGET() {
+
+            console.log("BUTTON CLICKED");
+
+            fetch("http://localhost:3000/")
+                .then(res => {
+
+                    console.log("RESPONSE MILA");
+                    console.log(res);
+
+                    return res.json();
+
+                })
+                .then(data => {
+
+                    console.log("DATA:", data);
+
+                })
+                .catch(err => {
+
+                    console.log("ERROR:", err);
+
+                });
+
+        }
+
+    
+// }
 
 </script>
 

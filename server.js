@@ -25,6 +25,7 @@ app.use(express.json());
 app.use(cors({
     // origin: "http://127.0.0.1:5500/test.html",
     origin: "http://127.0.0.1:5500",
+    methods: ["GET"]
 }));
 
 
@@ -39,9 +40,9 @@ connectDB();
 // Custom Middleware
 // ====================
 
-// app.use(logger);
-// app.use(check);
-// app.use(checkname, checkemail);
+app.use(logger);
+app.use(check);
+app.use(checkname, checkemail);
 
 
 // ====================
